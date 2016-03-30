@@ -1,0 +1,121 @@
+<h2 id="heading1">NAME</h2>
+<p class="indent">
+<b><a href="./scripts.php?script=iptkovr">iptkovr</a></b>
+- monitors a remote ip and assigns that ip to a virtual interface on
+another host if it becomes unavailable.
+</p>
+<h2 id="heading2">SYNOPSIS</h2>
+<p class="indent">
+
+<b><a href="./scripts.php?script=iptkovr">iptkovr</a></b>
+
+[
+<b>-c </b>
+<i>&lt;config_file&gt;</i>
+]
+[
+<b>-d</b>
+]
+[
+<b>-v </b>
+]
+[
+<i>config_id&gt;</i>
+]
+<br/>
+</p>
+<h2 id="heading3">AVAILABILITY</h2>
+<p class="indent">
+<b><a href="./scripts.php?script=iptkovr">iptkovr</a></b>
+is a Bourne shell script which should work equally well on all versions of UNIX,
+Linux and Mac OS X.
+</p>
+<h2 id="heading4">DESCRIPTION</h2>
+<p class="indent">
+<b><a href="./scripts.php?script=iptkovr">iptkovr</a></b>
+uses  the configuration id as a lookup key to the configuration file
+<i>/usr/local/etc/<a href="./scripts.php?script=iptkovr.cf">iptkovr.cf</a></i>
+to find essential details. The target host's IP address is monitored using
+<b>ping .</b>
+The interval between pings may be set in 
+<i>configuration\ file</i>
+but otherwise defaults to 10 seconds.
+</p>
+<p class="indent">
+if the target host does not respond 
+<b><a href="./scripts.php?script=iptkovr">iptkovr</a> </b>
+will wait for a further 
+<i>sleep</i>
+period then try one more time before concluding that the target is not going
+to come back on line.
+</p>
+<p class="indent">
+The target IP is then assigned to a virtual interface on the backup/clone 
+server.
+</p>
+<h2 id="heading5">OPTIONS</h2>
+<p class="indent">
+</p>
+<p class="indent">
+<b>-c</b>&nbsp;&nbsp;&nbsp;
+Use the specified configuration file in preference to the default
+
+<i>"/usr/local/etc/<a href="./scripts.php?script=iptkovr.cf">iptkovr.cf</a>"</i>
+.
+If no configuration file is found the 
+script will terminate with an error message. 
+</p>
+<p class="indent">
+<b>-d</b>&nbsp;&nbsp;&nbsp;
+Set debug mode on. 
+The 
+<b>-x</b>&nbsp;&nbsp;&nbsp;
+ option is set within the shell
+and each command in the script is echoed to the console.
+</p>
+<p class="indent">
+<b>-v</b>&nbsp;&nbsp;&nbsp;
+When set 
+<b><a href="./scripts.php?script=iptkovr">iptkovr</a></b>
+will report significant actions to 
+<i>standard error</i>.
+</p>
+<p class="indent">
+&lt;
+<i>config_id</i>
+&gt;
+The configuration identity is the key to the stanza in the configuration
+file which will be used to determine the required 
+<b>URI</b>
+ for the stats
+report.
+</p>
+<h2 id="heading7">FILES</h2>
+<p class="indent">
+<i><a href="./scripts.php?script=iptkovr.cf">iptkovr.cf</a></i>.
+</p>
+<h2 id="heading6">EXAMPLES</h2>
+<p class="indent">
+
+</p><div class="cmdline">
+<pre>
+	iptkovr -v memnon 
+</pre></div>
+<p class="indent">
+</p>
+<p class="indent">
+</p>
+<h2 id="heading8">BUGS</h2>
+<p class="indent">
+The script is quite crude and has very little, if any,  error checking.
+The consequences of unexpected input are untested.
+</p>
+<h2 id="heading9">SEE ALSO</h2>
+<p class="indent">
+<a href="./scripts.php?script=chkup&man=y"><i>chkup</i>.</a>
+</p>
+<h2 id="heading10">AUTHOR</h2>
+<p class="indent">
+Clifford W Fulford, City Linux. Contact fulford@fulford.net or +44 (0)709 229 5385.
+</p>
+	

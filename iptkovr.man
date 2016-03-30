@@ -1,0 +1,74 @@
+.TH IPTKOVR 8l "20th May r
+.SH NAME
+.B iptkovr
+- monitors a remote ip and assigns that ip to a virtual interface on
+another host if it becomes unavailable.
+.SH SYNOPSIS
+\fBiptkovr\fR
+[\fB-c \fI<config_file>\fR]
+[\fB-d\fR]
+[\fB-v \fR]
+[\fIconfig_id>\fR]
+.br
+.SH AVAILABILITY
+.B iptkovr
+is a Bourne shell script which should work equally well on all versions of UNIX,
+Linux and Mac OS X.
+.SH DESCRIPTION
+.B iptkovr
+uses  the configuration id as a lookup key to the configuration file
+.I /usr/local/etc/iptkovr.cf
+to find essential details. The target host's IP address is monitored using
+.B ping .
+The interval between pings may be set in 
+.I configuration\ file
+but otherwise defaults to 10 seconds.
+.LP
+if the target host does not respond 
+.B iptkovr 
+will wait for a further 
+.I sleep
+period then try one more time before concluding that the target is not going
+to come back on line.
+.LP
+The target IP is then assigned to a virtual interface on the backup/clone 
+server.
+.SH OPTIONS
+.TP 5
+.B -c
+Use the specified configuration file in preference to the default
+\fI"/usr/local/etc/iptkovr.cf"\fR.
+If no configuration file is found the 
+script will terminate with an error message. 
+.TP 5
+.B -d
+Set debug mode on. 
+The \fB-x\fR option is set within the shell
+and each command in the script is echoed to the console.
+.TP 5
+.B -v
+When set 
+.B iptkovr
+will report significant actions to 
+.IR standard error .
+.TP 5
+<\fIconfig_id\fR>
+The configuration identity is the key to the stanza in the configuration
+file which will be used to determine the required \fBURI\fR for the stats
+report.
+.SH FILES
+.IR iptkovr.cf .
+.SH EXAMPLES
+.IP
+.ft CW
+	iptkovr -v memnon 
+.ft R
+.LP
+.SH BUGS
+The script is quite crude and has very little, if any,  error checking.
+The consequences of unexpected input are untested.
+.SH SEE ALSO
+.IR chkup .
+.SH AUTHOR
+Clifford W Fulford, City Linux. Contact fulford@fulford.net or +44 (0)709 229 5385.
+.SH HISTORY
